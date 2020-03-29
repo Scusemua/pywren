@@ -21,6 +21,7 @@ import posixpath
 
 from  .exceptions import StorageNoSuchKeyError, StorageOutputNotFoundError
 from .s3_backend import S3Backend
+from .redis_backend import RedisBackend
 from .storage_utils import create_status_key, create_output_key
 from .storage_utils import status_key_suffix, create_cancel_key
 
@@ -39,6 +40,8 @@ class Storage(object):
         self.backend_type = config['storage_backend']
         if config['storage_backend'] == 's3':
             self.backend_handler = S3Backend(config['backend_config'])
+        elif config['storage_backend'] == 'redis':
+            self.backend_handler = RedisBackend(config['backend_config'])
         else:
             raise NotImplementedError(("Using {} as storage backend is" +
                                        "not supported yet").format(config['storage_backend']))

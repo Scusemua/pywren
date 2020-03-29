@@ -24,11 +24,11 @@ class RedisBackend(object):
     A wrap-up around S3 boto3 APIs.
     """
 
-    def __init__(self, s3config, host, port=6379):
-        self.bucket = s3config['bucket']
-        self.host = host
-        self.port = port
-        self.redis_client = redis.StrictRedis(host = self.host, port = self.port)
+    def __init__(self, redis_config):
+        self.bucket = redis_config['bucket']
+        self.host = redis_config["host"]
+        self.port = redis_config["port"]
+        self.redis_client = redis.StrictRedis(host=self.host, port=self.port)
 
     def put_object(self, key, data):
         """
