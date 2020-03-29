@@ -29,7 +29,7 @@ class RedisBackend(object):
         self.bucket = redis_config['bucket']
         self.host = redis_config["host"]
         self.port = redis_config["port"]
-        self.redis_client = redis.StrictRedis(host=self.host, port=self.port, decode_responses=True)
+        self.redis_client = redis.StrictRedis(host=self.host, port=self.port)
 
     def put_object(self, key, data):
         """
@@ -55,13 +55,13 @@ class RedisBackend(object):
         if res is None:
             raise StorageNoSuchKeyError(key)
 
-        #if type(res) is bytes:
-        #    try:
-        #        print("\tData returned by Redis is of type bytes. Attempting to decode...")
-        #        res = res.decode()
-        #        print("\tSuccess!")
-        #    except Exception:
-        #        print("\tDecoding data from Redis was NOT successful. Returning as-is.")
+        if type(res) is bytes:
+            try:
+                print("\tData returned by Redis is of type bytes. Attempting to decode...")
+                res = res.decode()
+                print("\tSuccess!")
+            except Exception:
+                print("\tDecoding data from Redis was NOT successful. Returning as-is.")
         
         return res
         
