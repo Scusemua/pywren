@@ -72,6 +72,8 @@ class RedisBackend(object):
 
         key_list = []
         for key in self.redis_client.scan_iter(count=100, match=match):
+            if type(key) is bytes:
+                key = key.decode()
             key_list.append(key)
 
         print("Found {} keys with prefix \"{}\".".format(len(key_list), prefix))
