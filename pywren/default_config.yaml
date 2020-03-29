@@ -1,21 +1,21 @@
 account:
-    aws_account_id: AWS_ACCOUNT_ID
-    aws_lambda_role: pywren_exec_role
-    aws_region: AWS_REGION
+    aws_account_id: 561589293384
+    aws_lambda_role: pywren_exec_role_1
+    aws_region: us-east-1
 
 
 lambda:
-    memory : 1536
+    memory : 3008
     timeout : 300
-    function_name : pywren1
+    function_name : pywren_1
 
 s3:
-    bucket: BUCKET_NAME
+    bucket: ec2-user-pywren-899
     pywren_prefix: pywren.jobs
 
 runtime:
-    s3_bucket: RUNTIME_BUCKET
-    s3_key: RUNTIME_KEY
+    s3_bucket: pywren-runtimes-public-us-east-1
+    s3_key: pywren.runtimes/default_3.6.meta.json
 
 scheduler:
     map_item_limit: 10000

@@ -28,10 +28,10 @@ scheduler:
 
 standalone:
     ec2_instance_type: m4.large
-    sqs_queue_name: pywren-jobs-1
+    sqs_queue_name: pywren-queue
     visibility: 10
     ec2_ssh_key : PYWREN_DEFAULT_KEY
-    target_ami : ami-0ff8a91507f77f867
+    target_ami : TARGET_AMI
     instance_name: pywren-standalone
     instance_profile_name: pywren-standalone
     max_idle_time: 60

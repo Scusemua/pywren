@@ -115,7 +115,7 @@ class ResponseFuture:
         Return the value returned by the call. If the call hasn't yet
         completed then this method will wait up to timeout seconds. If
         the call hasn't completed in timeout seconds then a
-        TimeoutError will be raised. timeout can be an int or float.If
+        TimeoutError will be raised. timeout can be an int or float. If
         timeout is not specified or None then there is no limit to the
         wait time.
 
@@ -145,6 +145,7 @@ class ResponseFuture:
 
         if self._state == JobState.error:
             if throw_except:
+                print("Encountered exception: {}".format(self._exception))
                 raise self._exception
             else:
                 return None
