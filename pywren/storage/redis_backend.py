@@ -39,7 +39,7 @@ class RedisBackend(object):
         :type data: str/bytes
         :return: None
         """
-        print("[{}] Storing data in Redis at key \"{}\".".format(key, datetime.datetime.utcnow()))
+        print("[{}] Storing data in Redis at key \"{}\".".format(datetime.datetime.utcnow(), key))
         self.redis_client.set(key, data)
 
     def get_object(self, key):
@@ -49,19 +49,19 @@ class RedisBackend(object):
         :return: Data of the object
         :rtype: str/bytes
         """
-        print("[{}] Reading data from Redis at key \"{}\".".format(key, datetime.datetime.utcnow()))
+        print("[{}] Reading data from Redis at key \"{}\".".format(datetime.datetime.utcnow(), key))
         res = self.redis_client.get(key)
         
         if res is None:
             raise StorageNoSuchKeyError(key)
 
-        if type(res) is bytes:
-            try:
-                print("\tData returned by Redis is of type bytes. Attempting to decode...")
-                res = res.decode()
-                print("\tSuccess!")
-            except Exception:
-                print("\tDecoding data from Redis was NOT successful. Returning as-is.")
+        #if type(res) is bytes:
+        #    try:
+        #        print("\tData returned by Redis is of type bytes. Attempting to decode...")
+        #        res = res.decode()
+        #        print("\tSuccess!")
+        #    except Exception:
+        #        print("\tDecoding data from Redis was NOT successful. Returning as-is.")
         
         return res
         
@@ -72,7 +72,7 @@ class RedisBackend(object):
         :return: True if key exists, False if not exists
         :rtype: boolean
         """
-        print("[{}] Checking if data exists in Redis at key \"{}\".".format(key, datetime.datetime.utcnow()))
+        print("[{}] Checking if data exists in Redis at key \"{}\".".format(datetime.datetime.utcnow(), key))
         return self.redis_client.exists(key)
 
     def list_keys_with_prefix(self, prefix):
@@ -82,7 +82,7 @@ class RedisBackend(object):
         :return: List of keys in bucket that match the given prefix.
         :rtype: list of str
         """
-        print("[{}] Listing existing Redis keys with prefix \"{}\".".format(prefix, datetime.datetime.utcnow()))
+        print("[{}] Listing existing Redis keys with prefix \"{}\".".format(datetime.datetime.utcnow(), prefix))
         match = str(prefix) + "*"
 
         key_list = []
