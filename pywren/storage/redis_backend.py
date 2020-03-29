@@ -38,6 +38,7 @@ class RedisBackend(object):
         :type data: str/bytes
         :return: None
         """
+        print("Storing data in Redis at key \"{}\".".format(key))
         self.redis_client.set(key, data)
 
     def get_object(self, key):
@@ -47,6 +48,7 @@ class RedisBackend(object):
         :return: Data of the object
         :rtype: str/bytes
         """
+        print("Reading data from Redis at key \"{}\".".format(key))
         r = self.redis_client.get(key)
         
         if r is None:
@@ -59,6 +61,7 @@ class RedisBackend(object):
         :return: True if key exists, False if not exists
         :rtype: boolean
         """
+        print("Checking if data exists in Redis at key \"{}\".".format(key))
         return self.redis_client.exists(key)
 
     def list_keys_with_prefix(self, prefix):
@@ -68,6 +71,7 @@ class RedisBackend(object):
         :return: List of keys in bucket that match the given prefix.
         :rtype: list of str
         """
+        print("Listing existing Redis keys with prefix \"{}\".".format(prefix))
         match = str(prefix) + "*"
 
         key_list = []
