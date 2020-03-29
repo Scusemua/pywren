@@ -39,8 +39,10 @@ class Storage(object):
         self.prefix = config['storage_prefix']
         self.backend_type = config['storage_backend']
         if config['storage_backend'] == 's3':
+            print("[INFO] Creating S3 Backend handler.")
             self.backend_handler = S3Backend(config['backend_config'])
         elif config['storage_backend'] == 'redis':
+            print("[INFO] Creating Redis Backend handler.")
             self.backend_handler = RedisBackend(config['backend_config'])
         else:
             raise NotImplementedError(("Using {} as storage backend is" +

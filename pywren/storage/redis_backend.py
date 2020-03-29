@@ -15,6 +15,7 @@
 #
 
 import botocore
+import datetime 
 import redis 
 
 from .exceptions import StorageNoSuchKeyError
@@ -38,7 +39,7 @@ class RedisBackend(object):
         :type data: str/bytes
         :return: None
         """
-        print("Storing data in Redis at key \"{}\".".format(key))
+        print("[{}] Storing data in Redis at key \"{}\".".format(key, datetime.datetime.utcnow()))
         self.redis_client.set(key, data)
 
     def get_object(self, key):
@@ -48,11 +49,13 @@ class RedisBackend(object):
         :return: Data of the object
         :rtype: str/bytes
         """
-        print("Reading data from Redis at key \"{}\".".format(key))
-        r = self.redis_client.get(key)
+        print("[{}] Reading data from Redis at key \"{}\".".format(key, datetime.datetime.utcnow()))
+        res = self.redis_client.get(key)
         
-        if r is None:
+        if res is None:
             raise StorageNoSuchKeyError(key)
+        
+        return res
         
     def key_exists(self, key):
         """
@@ -61,7 +64,7 @@ class RedisBackend(object):
         :return: True if key exists, False if not exists
         :rtype: boolean
         """
-        print("Checking if data exists in Redis at key \"{}\".".format(key))
+        print("[{}] Checking if data exists in Redis at key \"{}\".".format(key, datetime.datetime.utcnow()))
         return self.redis_client.exists(key)
 
     def list_keys_with_prefix(self, prefix):
@@ -71,7 +74,7 @@ class RedisBackend(object):
         :return: List of keys in bucket that match the given prefix.
         :rtype: list of str
         """
-        print("Listing existing Redis keys with prefix \"{}\".".format(prefix))
+        print("[{}] Listing existing Redis keys with prefix \"{}\".".format(prefix, datetime.datetime.utcnow()))
         match = str(prefix) + "*"
 
         key_list = []
