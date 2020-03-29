@@ -54,6 +54,14 @@ class RedisBackend(object):
         
         if res is None:
             raise StorageNoSuchKeyError(key)
+
+        if type(res) is bytes:
+            try:
+                print("\tData returned by Redis is of type bytes. Attempting to decode...")
+                res = res.decode()
+                print("\tSuccess!")
+            except Exception:
+                print("\tDecoding data from Redis was NOT successful. Returning as-is.")
         
         return res
         
