@@ -113,7 +113,7 @@ class Storage(object):
         status_key = create_status_key(self.prefix, callset_id, call_id)
         try:
             data = self.backend_handler.get_object(status_key)
-            return json.loads(data.decode('ascii'))
+            return json.loads(data)
         except StorageNoSuchKeyError:
             return None
 
