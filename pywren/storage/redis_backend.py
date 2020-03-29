@@ -74,4 +74,5 @@ class RedisBackend(object):
         for key in self.redis_client.scan_iter(count=100, match=match):
             key_list.append(key)
 
+        print("Found {} keys with prefix \"{}\".".format(len(key_list), prefix))
         return key_list
