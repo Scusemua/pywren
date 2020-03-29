@@ -140,7 +140,7 @@ def _wait(fs, return_early_n, max_direct_query_n,
         # the intersection of those that are done
         callids_done_in_callset = set(storage_handler.get_callset_status(callset_id))
 
-        not_done_call_ids = {f.call_id for f in not_done_futures}
+        not_done_call_ids = {f.call_id for f in not_done_futures} 
 
         done_call_ids = not_done_call_ids.intersection(callids_done_in_callset)
         not_done_call_ids = not_done_call_ids - done_call_ids

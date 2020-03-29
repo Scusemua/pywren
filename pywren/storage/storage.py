@@ -95,7 +95,7 @@ class Storage(object):
         suffix = status_key_suffix
         status_keys = list() # [k for k in keys if suffix in k]
         for key in keys:
-            print("Checking if suffix \"{}\" is in key \"{}\".".format(suffix, key))
+            #print("Checking if suffix \"{}\" is in key \"{}\".".format(suffix, key))
             if suffix in key:
                 status_keys.append(key)
         call_ids = [k[len(callset_prefix)+1:].split("/")[0] for k in status_keys]

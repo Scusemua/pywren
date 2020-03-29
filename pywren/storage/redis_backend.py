@@ -38,7 +38,7 @@ class RedisBackend(object):
         :type data: str/bytes
         :return: None
         """
-        self.redis_client.set(self.bucket + key, data)
+        self.redis_client.set(key, data)
 
     def get_object(self, key):
         """
@@ -47,10 +47,10 @@ class RedisBackend(object):
         :return: Data of the object
         :rtype: str/bytes
         """
-        r = self.redis_client.get(self.bucket + key)
+        r = self.redis_client.get(key)
         
         if r is None:
-            raise StorageNoSuchKeyError(self.bucket + key)
+            raise StorageNoSuchKeyError(key)
         
     def key_exists(self, key):
         """
@@ -59,7 +59,7 @@ class RedisBackend(object):
         :return: True if key exists, False if not exists
         :rtype: boolean
         """
-        return self.redis_client.exists(self.bucket + key)
+        return self.redis_client.exists(key)
 
     def list_keys_with_prefix(self, prefix):
         """
@@ -68,7 +68,7 @@ class RedisBackend(object):
         :return: List of keys in bucket that match the given prefix.
         :rtype: list of str
         """
-        match = self.bucket + str(prefix) + "*"
+        match = str(prefix) + "*"
 
         key_list = []
         for key in self.redis_client.scan_iter(count=100, match=match):
@@ -76,5 +76,5 @@ class RedisBackend(object):
                 key = key.decode()
             key_list.append(key)
 
-        print("Found {} keys with prefix \"{}\".".format(len(key_list), prefix))
+        #print("Found {} keys with prefix \"{}\".".format(len(key_list), prefix))
         return key_list
