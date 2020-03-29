@@ -21,6 +21,7 @@ s3:
 runtime:
     s3_bucket: pywren-runtimes-public-us-east-1
     s3_key: pywren.runtimes/default_3.6.meta.json
+    runtime_storage: s3
 
 scheduler:
     map_item_limit: 10000
