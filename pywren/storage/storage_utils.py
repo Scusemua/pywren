@@ -106,7 +106,7 @@ def create_keys(prefix, callset_id, call_id):
 
 
 def get_storage_path(config):
-    if config['storage_backend'] != 's3':
+    if config['storage_backend'] != 's3' and config['storage_backend'] != 'redis':
         raise NotImplementedError(
             ("Using {} as storage backend is not supported yet").format(
                 config['storage_backend']))
