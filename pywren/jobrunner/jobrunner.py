@@ -163,7 +163,7 @@ except Exception as e:
         pickled_output = pickle.dumps({'result' : e,
                                        'exc_type' : exc_type,
                                        'exc_value' : exc_value,
-                                       'exc_traceback' : exc_traceback,
+                                       'exc_traceback' : exc,
                                        'sys.path' : sys.path,
                                        'success' : False})
 

@@ -243,9 +243,9 @@ class ResponseFuture:
                                call_invoker_result['exc_traceback'])
             print("Exception: {}\nTraceback: {}\n{}\n{}".format(self._exception, str(self._traceback[0]),
                                                                                  str(self._traceback[1]),
-                                                                                 str(self._traceback[2])))
+                                                                                 str(call_invoker_result['exc_traceback'])))
+            print("call_invoker_result['exc_traceback'].__dict__ = {}".format(call_invoker_result['exc_traceback'].__dict__))                                                                                
             if throw_except:
-
                 if call_invoker_result.get('pickle_fail', False):
                     logging.warning(
                         "there was an error pickling. The original exception: " + \
