@@ -10,7 +10,7 @@ lambda:
     function_name : pywren_1
 
 storage_backend: redis
-redis_host: ec2-54-84-185-30.compute-1.amazonaws.com
+redis_host: ec2-54-163-216-212.compute-1.amazonaws.com
 redis_port: 6379
 storage_prefix: pywren.jobs
 
