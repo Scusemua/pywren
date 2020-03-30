@@ -244,7 +244,7 @@ class ResponseFuture:
             print("Exception: {}\nTraceback: {}\n{}\n{}".format(self._exception, str(self._traceback[0]),
                                                                                  str(self._traceback[1]),
                                                                                  str(call_invoker_result['exc_traceback'])))
-            print("traceback.format_exc() = {}".format(call_invoker_result['exc_traceback'].format_exc()))
+            print("Traceback Str:\n{}".format(call_invoker_result['exc_traceback_str']))                                                                                 
             if throw_except:
                 if call_invoker_result.get('pickle_fail', False):
                     logging.warning(
