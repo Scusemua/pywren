@@ -29,7 +29,7 @@ class RedisBackend(object):
         self.bucket = redis_config['bucket']
         self.host = redis_config["host"]
         self.port = redis_config["port"]
-        print("RedisBackend connecting to Redis instance at {}:{}...".format(host, port))
+        print("RedisBackend connecting to Redis instance at {}:{}...".format(self.host, self.port))
         self.redis_client = redis.StrictRedis(host=self.host, port=self.port)
         print("RedisBackend -- Connection Successful!")
 
