@@ -10,7 +10,7 @@ lambda:
     function_name : pywren_1
 
 storage_backend: redis
-redis_host: ec2-54-163-216-212.compute-1.amazonaws.com
+redis_host: ec2-54-160-229-49.compute-1.amazonaws.com
 redis_port: 6379
 storage_prefix: pywren.jobs
 
@@ -30,7 +30,7 @@ standalone:
     ec2_instance_type: m4.large
     sqs_queue_name: pywren-queue
     visibility: 10
-    ec2_ssh_key : PYWREN_DEFAULT_KEY
+    ec2_ssh_key : CS484_DESKTOP
     target_ami : TARGET_AMI
     instance_name: pywren-standalone
     instance_profile_name: pywren-standalone
