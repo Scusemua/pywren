@@ -92,6 +92,7 @@ class Executor(object):
             random.seed()
             runtime_url = random.choice(self.runtime_meta_info['urls'])
 
+        print("output_key = {}\nstatus_key = {}\n".format(output_key, status_key))
         arg_dict = {
             'storage_config' : self.storage.get_storage_config(),
             'func_key' : func_key,
@@ -221,6 +222,7 @@ class Executor(object):
         else:
             # FIXME add warning that you wanted data all as one but
             # it exceeded max data size
+            print("[WARNING] Data passed to PyWrenExecutor.Map exceeded max size!")
             pass
 
         if exclude_modules:
@@ -261,6 +263,7 @@ class Executor(object):
             else:
                 data_key = agg_data_key
 
+            print("[PyWren] Invoking function with func key {} and data key {}".format(func_key, data_key))
             return self.invoke_with_keys(func_key, data_key,
                                          output_key,
                                          status_key,

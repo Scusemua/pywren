@@ -19,8 +19,10 @@ s3:
     pywren_prefix: pywren.jobs
 
 runtime:
-    s3_bucket: pywren-runtimes-public-us-east-1
-    s3_key: pywren.runtimes/default_3.6.meta.json
+    #s3_bucket: pywren-runtimes-public-us-east-1
+    #s3_key: pywren.runtimes/default_3.6.meta.json
+    s3_bucket: numpywrenpublic
+    s3_key: pywren.runtime/pywren_runtime-3.6-numpywren.tar.gz    
     runtime_storage: s3
 
 scheduler:
